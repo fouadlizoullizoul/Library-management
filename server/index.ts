@@ -1,1 +1,3 @@
-console.log('hi ff')
+console.log("hiii")
+let numer;
+console.log('djjfj')
