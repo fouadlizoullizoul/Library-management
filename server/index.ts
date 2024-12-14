@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit';
+import errorMiddleware from './middleware/error.middleware';
 const app=express();
 const PORT =5000;
 
@@ -16,7 +17,6 @@ app.use(rateLimit({
     
 }))
 app.use(express.json())
-
 //add routing for / path
 app.get('/',(req,res)=>{
     res.json({message:"Hi Res"})
@@ -25,6 +25,10 @@ app.get('/',(req,res)=>{
 app.post('/',(req,res)=>{
     console.log(req.body)
     res.json({message:"Hello Fouad",data:req.body})
+})
+app.use(errorMiddleware)
+app.use((_req, res)=>{
+    res.status(404).json({message:"Page Not Found"})
 })
 app.listen(PORT,()=>{
     console.log("HI") 
