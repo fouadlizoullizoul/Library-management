@@ -4,7 +4,6 @@ import helmet from 'helmet'
 import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config'
-import db from './database/index'
 const app=express();
 const PORT =config.port || 5000;
 
@@ -33,16 +32,7 @@ app.use((_req, res)=>{
     res.status(404).json({message:"Page Not Found"})
 })
 
-//db test 
-db.connect().then((client)=>{
-    return client.query('SELECT NOW()').then((res)=>{
-        client.release()
-        console.log(res.rows)
-    }).catch((error)=>{
-        client.release();
-        console.log(error.stack)
-    })
-})
+
 app.listen(PORT,()=>{
     console.log("HI") 
 });
