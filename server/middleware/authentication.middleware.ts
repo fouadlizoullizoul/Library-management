@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import Error from "../interface/error.interface";
 import config from "../config";
 
-
+ 
 
 const handleUnauthorizedError = (next: NextFunction)=>{
     const error: Error = new Error('Login Error:Please try again');

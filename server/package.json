@@ -7,7 +7,7 @@
     "dev": "nodemon index.ts",
     "build": "tsc",
     "start": "npm run build && node dist/index.js",
-    "test": "npm run build && jasmine",
+    "test": "set NODE_ENV=test&& db-migrate up --env test && tsc && jasmine && db-migrate reset",
     "migration:run": "db-migrate up"
   },
   "author": "",
